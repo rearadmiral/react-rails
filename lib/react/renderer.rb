@@ -44,6 +44,7 @@ module React
       react_props = React::Renderer.react_props(args)
       jscode = <<-JS
         function() {
+          #{JavascriptContext.current.consume!}
           return React.renderToString(React.createElement(#{component}, #{react_props}));
         }()
       JS

@@ -2,6 +2,13 @@ module React
   module Rails
     module ViewHelper
 
+      # Render inline javascript on the page that is also available
+      #  when prerendering. Useful for passing data from Rails.
+      def react_javascript(&block)
+        React::JavascriptContext.current << capture(&block)
+        content_tag(:script, '', type: 'text/javascript', &block)
+      end
+
       # Render a UJS-type HTML tag annotated with data attributes, which
       # are used by react_ujs to actually instantiate the React component
       # on the client.

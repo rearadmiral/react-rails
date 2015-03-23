@@ -320,6 +320,16 @@ end
 
 ```
 
+If you are using an application architecture such as Flux that requires objects other than the components to have access to Rails data, you can use the following helper:
+
+```erb
+<%= react_javascript do %>
+    Stores.Friends.initializeWith(<%= @friends.to_json %>);
+<% end %>
+```
+
+This code will be run on the client as well.
+
 ## CoffeeScript
 
 It is possible to use JSX with CoffeeScript. The caveat is that you will still need to include the docblock. Since CoffeeScript doesn't allow `/* */` style comments, we need to do something a little different. We also need to embed JSX inside backticks so CoffeeScript ignores the syntax it doesn't understand. Here's an example:
